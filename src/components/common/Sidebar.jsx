@@ -1,42 +1,45 @@
-// src/components/common/Sidebar.jsx
-import React from 'react'; // Import React
-import { NavLink } from 'react-router-dom'; // Import NavLink from react-router-dom to handle active states automatically
-import { LayoutDashboard, Users, BarChart2 } from 'lucide-react'; // Import icons from lucide-react for the sidebar links
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { LayoutDashboard, Users, BarChart2 } from 'lucide-react';
+import DarkModeToggle from './DarkModeToggle';
 
-const Sidebar = () => { // Define the Sidebar functional component
-  // Define an array of route objects to easily iterate over them and create links
-  const navItems = [ // Start array
-    { path: '/', name: 'Dashboard', icon: <LayoutDashboard size={20} /> }, // Dashboard route definition with its path, display name, and icon
-    { path: '/leads', name: 'Leads', icon: <Users size={20} /> }, // Leads route definition
-    { path: '/analytics', name: 'Analytics', icon: <BarChart2 size={20} /> }, // Analytics route definition
-  ]; // End array
+const Sidebar = () => {
+  const navItems = [
+    { path: '/', name: 'Dashboard', icon: <LayoutDashboard size={20} /> },
+    { path: '/leads', name: 'Leads', icon: <Users size={20} /> },
+    { path: '/analytics', name: 'Analytics', icon: <BarChart2 size={20} /> },
+  ];
 
-  return ( // Return the JSX for the sidebar
-    <aside className="w-64 bg-gray-900 text-white h-screen flex flex-col"> {/* Aside HTML element for the sidebar, fixed width 64, dark gray background, white text, full screen height, flex column layout */}
-      <div className="p-6 border-b border-gray-800"> {/* Header container with padding and bottom border */}
-        <h2 className="text-2xl font-bold tracking-wider">CRM Lite</h2> {/* App title, large, bold, with wider letter spacing */}
-      </div> {/* Close header container */}
+  return (
+    <aside className="fixed bottom-0 md:relative w-full md:w-20 lg:w-64 bg-gray-900 text-white h-16 md:h-screen flex flex-row md:flex-col transition-all duration-300 border-t md:border-t-0 md:border-r border-gray-800 dark:border-gray-800 z-40">
+      <div className="hidden lg:block p-6 border-b border-gray-800 min-h-[64px]">
+        <h2 className="text-2xl font-bold tracking-wider truncate">CRM Lite</h2>
+      </div>
       
-      <nav className="flex-1 p-4 space-y-2"> {/* Navigation container that takes up remaining space, with padding and vertical space between children */}
-        {navItems.map((item) => ( // Map over the navItems array to render a NavLink for each item
-          <NavLink // The NavLink component from react-router-dom
-            key={item.path} // Unique key required by React when mapping over arrays, using the path
-            to={item.path} // The URL path to navigate to when clicked
-            className={({ isActive }) => // Dynamic className function provided by NavLink, giving us the 'isActive' boolean
-              `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200 ${ // Template literal for base classes: flex, items center, gap 3, horizontal/vertical padding, rounded corners, color transition
-                isActive // Check if the link is active
-                  ? 'bg-blue-600 text-white' // Classes to apply if active: blue background, white text
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-white' // Classes to apply if inactive: light gray text, dark gray background on hover, white text on hover
-              }` // Close template literal
-            } // Close className function
-          > {/* Close opening NavLink tag */}
-            {item.icon} {/* Render the icon for the link */}
-            <span className="font-medium">{item.name}</span> {/* Render the name of the link with medium font weight */}
-          </NavLink> // Close NavLink component
-        ))} {/* End map */}
-      </nav> {/* Close navigation container */}
-    </aside> // Close sidebar aside element
-  ); // Close return
-}; // Close component definition
+      <nav className="flex-1 p-2 md:p-4 flex flex-row md:flex-col justify-around md:justify-start space-x-2 md:space-x-0 md:space-y-2">
+        {navItems.map((item) => (
+          <NavLink
+            key={item.path}
+            to={item.path}
+            className={({ isActive }) =>
+              `flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-2 md:py-3 rounded-lg transition-colors duration-200 min-h-[44px] min-w-[44px] ${
+                isActive
+                  ? 'bg-blue-600 text-white'
+                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+              }`
+            }
+          >
+            <div className="flex-shrink-0">{item.icon}</div>
+            <span className="text-[10px] md:text-sm font-medium lg:block md:hidden block">{item.name}</span>
+          </NavLink>
+        ))}
+      </nav>
+      
+      <div className="hidden md:block p-4 border-t border-gray-800">
+        <DarkModeToggle />
+      </div>
+    </aside>
+  );
+};
 
-export default Sidebar; // Export Sidebar component as default
+export default Sidebar;

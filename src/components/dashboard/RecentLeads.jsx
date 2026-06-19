@@ -13,40 +13,40 @@ const RecentLeads = ({ leads }) => {
 
   const getStatusBadgeClass = (status) => {
     switch (status) {
-      case 'New': return 'bg-blue-100 text-blue-700';
-      case 'Contacted': return 'bg-amber-100 text-amber-700';
-      case 'Qualified': return 'bg-green-100 text-green-700';
-      case 'Lost': return 'bg-red-100 text-red-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'New': return 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400';
+      case 'Contacted': return 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400';
+      case 'Qualified': return 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400';
+      case 'Lost': return 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400';
+      default: return 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300';
     }
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
-      <div className="p-6 border-b border-gray-100 flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-gray-900">Recent Leads</h3>
+    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm overflow-hidden transition-colors duration-200">
+      <div className="p-6 border-b border-gray-100 dark:border-gray-700 flex justify-between items-center">
+        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Leads</h3>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-gray-50 text-gray-500 text-sm uppercase tracking-wider">
+            <tr className="bg-gray-50 dark:bg-gray-900/50 text-gray-500 dark:text-gray-400 text-sm uppercase tracking-wider">
               <th className="p-4 font-medium">Name</th>
               <th className="p-4 font-medium">Company</th>
               <th className="p-4 font-medium">Status</th>
               <th className="p-4 font-medium">Date Added</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
             {recentLeads.map((lead) => (
-              <tr key={lead.id} className="hover:bg-gray-50 transition-colors">
-                <td className="p-4 text-sm text-gray-900 font-medium">{lead.name}</td>
-                <td className="p-4 text-sm text-gray-500">{lead.company}</td>
+              <tr key={lead.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                <td className="p-4 text-sm text-gray-900 dark:text-white font-medium">{lead.name}</td>
+                <td className="p-4 text-sm text-gray-500 dark:text-gray-400">{lead.company}</td>
                 <td className="p-4 text-sm">
                   <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${getStatusBadgeClass(lead.status)}`}>
                     {lead.status}
                   </span>
                 </td>
-                <td className="p-4 text-sm text-gray-500">
+                <td className="p-4 text-sm text-gray-500 dark:text-gray-400">
                   {new Date(lead.dateAdded).toLocaleDateString()}
                 </td>
               </tr>

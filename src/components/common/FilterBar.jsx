@@ -30,11 +30,11 @@ const FilterBar = ({ activeFilter, onFilterChange, leads }) => {
               px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200
               ${isActive 
                 ? 'bg-blue-600 text-white shadow-sm' 
-                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 hover:text-gray-900'}
+                : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'}
             `}
             aria-pressed={isActive}
           >
-            {filter} <span className={`ml-1 ${isActive ? 'text-blue-200' : 'text-gray-400'}`}>({count})</span>
+            {filter} <span className={`ml-1 ${isActive ? 'text-blue-200' : 'text-gray-400 dark:text-gray-500'}`}>({count})</span>
           </button>
         );
       })}
