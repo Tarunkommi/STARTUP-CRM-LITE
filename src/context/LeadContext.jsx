@@ -1,77 +1,109 @@
-import React, { createContext, useContext } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { sampleLeads } from '../data/sampleLeads';
-
-/**
- * @typedef {Object} Lead
- * @property {string|number} id
- * @property {string} name
- * @property {string} company
- * @property {string} email
- * @property {string} phone
- * @property {'New' | 'Contacted' | 'Meeting Scheduled' | 'Proposal Sent' | 'Won' | 'Lost'} status
- * @property {'Website' | 'Referral' | 'LinkedIn' | 'Cold Call' | 'Email Campaign' | 'Other'} source
- * @property {string} createdAt - ISO date string
- */
+import React, { createContext, useContext, useState } from 'react';
+import { leadService } from '../services/leadService';
+import toast from 'react-hot-toast';
 
 const LeadContext = createContext(undefined);
 
-/**
- * LeadProvider component that wraps the app
- */
 export const LeadProvider = ({ children }) => {
-  const [leads, setLeads] = useLocalStorage('startup-crm-leads', sampleLeads);
+  const [leads, setLeads] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pagination, setPagination] = useState({
+    total: 0,
+    page: 1,
+    limit: 20,
+    pages: 0
+  });
 
-  /**
-   * Adds a new lead
-   * @param {Omit<Lead, 'id' | 'createdAt'>} leadData
-   */
-  const addLead = (leadData) => {
-    const newLead = {
-      ...leadData,
-      id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
-      createdAt: new Date().toISOString(),
-    };
-    setLeads(prev => [newLead, ...prev]);
+  const fetchLeads = async (params = {}) => {
+    setIsLoading(true);
+    try {
+      const res = await leadService.getLeads(params);
+      if (res.success) {
+        setLeads(res.data);
+        setPagination(res.pagination);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to fetch leads');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  /**
-   * Updates an existing lead
-   * @param {string|number} id
-   * @param {Partial<Lead>} leadData
-   */
-  const updateLead = (id, leadData) => {
-    setLeads(prev => prev.map(lead => lead.id === id ? { ...lead, ...leadData } : lead));
+  const addLead = async (leadData) => {
+    try {
+      const res = await leadService.createLead(leadData);
+      if (res.success) {
+        setLeads(prev => [res.data, ...prev]);
+        toast.success('Lead created successfully');
+        return true;
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to create lead');
+      return false;
+    }
   };
 
-  /**
-   * Deletes a lead by id
-   * @param {string|number} id
-   */
-  const deleteLead = (id) => {
-    setLeads(prev => prev.filter(lead => lead.id !== id));
+  const updateLead = async (id, leadData) => {
+    try {
+      const res = await leadService.updateLead(id, leadData);
+      if (res.success) {
+        setLeads(prev => prev.map(lead => (lead._id === id || lead.id === id) ? res.data : lead));
+        toast.success('Lead updated successfully');
+        return true;
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to update lead');
+      return false;
+    }
   };
 
-  /**
-   * Gets a lead by id
-   * @param {string|number} id
-   * @returns {Lead | undefined}
-   */
+  const updateLeadStatus = async (id, status) => {
+    try {
+      const res = await leadService.updateLeadStatus(id, status);
+      if (res.success) {
+        setLeads(prev => prev.map(lead => (lead._id === id || lead.id === id) ? res.data : lead));
+        toast.success(`Lead status updated to ${status}`);
+        return true;
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to update status');
+      return false;
+    }
+  };
+
+  const deleteLead = async (id) => {
+    try {
+      await leadService.deleteLead(id);
+      setLeads(prev => prev.filter(lead => lead._id !== id && lead.id !== id));
+      toast.success('Lead deleted successfully');
+      return true;
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Failed to delete lead');
+      return false;
+    }
+  };
+
   const getLeadById = (id) => {
-    return leads.find(lead => lead.id === id);
+    return leads.find(lead => lead._id === id || lead.id === id);
   };
 
   return (
-    <LeadContext.Provider value={{ leads, addLead, updateLead, deleteLead, getLeadById }}>
+    <LeadContext.Provider value={{ 
+      leads, 
+      isLoading, 
+      pagination, 
+      fetchLeads, 
+      addLead, 
+      updateLead, 
+      updateLeadStatus,
+      deleteLead, 
+      getLeadById 
+    }}>
       {children}
     </LeadContext.Provider>
   );
 };
 
-/**
- * Custom hook to use the LeadContext
- * @returns {{ leads: Lead[], addLead: Function, updateLead: Function, deleteLead: Function, getLeadById: Function }}
- */
 export const useLeads = () => {
   const context = useContext(LeadContext);
   if (!context) {
