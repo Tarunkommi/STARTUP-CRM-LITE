@@ -45,6 +45,7 @@ app.use(
   cors({
     origin: [
       process.env.FRONTEND_URL, 
+      'https://startup-crm-lite-orcin.vercel.app',
       'https://your-app.vercel.app', 
       /^http:\/\/localhost:\d+$/
     ],
