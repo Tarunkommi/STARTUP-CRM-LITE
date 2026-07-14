@@ -106,6 +106,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Root endpoint to prevent "Cannot GET /" errors
+app.get('/', (req, res) => {
+  res.send('Startup CRM Backend is running! Please use the /api endpoints.');
+});
+
 
 // --- Error Handling ---
 
