@@ -46,13 +46,13 @@ const Leads = () => {
       // Update existing lead
       updateLead(selectedLead.id, leadData);
       toast.success('Lead updated successfully!', {
-        style: { background: '#22c55e', color: '#fff' }
+        style: { background: '#4C8C5A', color: '#fff' }
       });
     } else {
       // Create new lead
       addLead(leadData);
       toast.success('Lead created successfully!', {
-        style: { background: '#22c55e', color: '#fff' }
+        style: { background: '#4C8C5A', color: '#fff' }
       });
     }
     handleCloseModal();
@@ -62,36 +62,36 @@ const Leads = () => {
     if (window.confirm('Are you sure you want to delete this lead?')) {
       deleteLead(id);
       toast.success('Lead deleted successfully.', {
-        style: { background: '#ef4444', color: '#fff' },
+        style: { background: '#C95A5A', color: '#fff' },
         icon: '🗑️',
       });
     }
   };
 
   return (
-    <div className="p-6 bg-slate-50 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+    <div className="p-6 bg-[#F7F8F5] dark:bg-[#171A17] min-h-screen transition-colors duration-200">
       <Toaster position="top-right" />
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Leads</h1>
-          <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Manage your prospects and contacts.</p>
+          <h1 className="text-2xl font-bold text-[#1C201B] dark:text-[#F4F6F2]">Leads</h1>
+          <p className="text-[#59635A] dark:text-[#B9C0B8] text-sm mt-1">Manage your prospects and contacts.</p>
         </div>
         
         <div className="flex items-center space-x-3 w-full sm:w-auto">
           {/* View Toggle - Hidden on mobile, visible on md and up */}
-          <div className="hidden md:flex bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-1 transition-colors duration-200">
+          <div className="hidden md:flex bg-white dark:bg-[#212520] rounded-lg border border-[#D6D8D2] dark:border-[#343A35] p-1 transition-colors duration-200">
             <button
               onClick={() => setViewMode('table')}
-              className={`p-1.5 rounded-md transition-colors ${viewMode === 'table' ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}`}
+              className={`p-1.5 rounded-md transition-colors ${viewMode === 'table' ? 'bg-[#ECEDE8] dark:bg-[#282D27] text-[#1C201B] dark:text-[#F4F6F2]' : 'text-[#59635A] dark:text-[#B9C0B8] hover:text-[#1C201B] dark:hover:text-[#F4F6F2]'}`}
               aria-label="Table View"
             >
               <ListIcon className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-md transition-colors ${viewMode === 'grid' ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'}`}
+              className={`p-1.5 rounded-md transition-colors ${viewMode === 'grid' ? 'bg-[#ECEDE8] dark:bg-[#282D27] text-[#1C201B] dark:text-[#F4F6F2]' : 'text-[#59635A] dark:text-[#B9C0B8] hover:text-[#1C201B] dark:hover:text-[#F4F6F2]'}`}
               aria-label="Grid View"
             >
               <LayoutGrid className="w-4 h-4" />
@@ -100,7 +100,7 @@ const Leads = () => {
           
           <button
             onClick={() => handleOpenModal()}
-            className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors font-medium text-sm shadow-sm"
+            className="flex-1 sm:flex-none flex items-center justify-center space-x-2 bg-[#50614F] hover:bg-[#3E4C3D] text-white dark:bg-[#8BAE87] dark:text-[#171A17] dark:hover:bg-[#9FBF9B] px-4 py-2 rounded-lg transition-colors font-medium text-sm shadow-sm"
           >
             <Plus className="w-4 h-4" />
             <span>Add Lead</span>
@@ -158,15 +158,15 @@ const Leads = () => {
 
       {/* Modal Overlay */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-gray-900/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-gray-800 w-full h-full max-w-none rounded-none md:max-w-lg md:rounded-xl md:h-auto overflow-y-auto overflow-x-hidden shadow-xl transition-colors duration-200" role="dialog" aria-modal="true">
-            <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-[#171A17]/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-[#212520] w-full h-full max-w-none rounded-none md:max-w-lg md:rounded-xl md:h-auto overflow-y-auto overflow-x-hidden shadow-xl border border-[#D6D8D2] dark:border-[#343A35] transition-colors duration-200" role="dialog" aria-modal="true">
+            <div className="flex items-center justify-between p-5 border-b border-[#D6D8D2] dark:border-[#343A35]">
+              <h2 className="text-lg font-bold text-[#1C201B] dark:text-[#F4F6F2]">
                 {selectedLead ? 'Edit Lead' : 'Add New Lead'}
               </h2>
               <button 
                 onClick={handleCloseModal}
-                className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors focus:outline-none"
+                className="p-1.5 text-[#59635A] hover:text-[#1C201B] dark:text-[#B9C0B8] dark:hover:text-[#F4F6F2] hover:bg-[#ECEDE8] dark:hover:bg-[#282D27] rounded-full transition-colors focus:outline-none"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />

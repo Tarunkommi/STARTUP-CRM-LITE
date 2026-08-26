@@ -21,7 +21,7 @@ const ProtectedRoute = () => {
   const { token, isLoading } = useAuth();
   
   if (isLoading) {
-    return <div className="flex h-screen items-center justify-center text-xl text-gray-500">Loading session...</div>;
+    return <div className="flex h-screen items-center justify-center text-xl text-[#59635A] dark:text-[#B9C0B8]">Loading session...</div>;
   }
   
   // Enforce authentication: redirect to login if no token is found
@@ -31,11 +31,11 @@ const ProtectedRoute = () => {
   
   // If authorized, render the core Dashboard application layout wrapper
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-100 transition-colors duration-200 overflow-hidden">
+    <div className="flex h-screen bg-[#F7F8F5] dark:bg-[#171A17] font-sans text-[#1C201B] dark:text-[#F4F6F2] transition-colors duration-200 overflow-hidden">
       <MobileHeader />
       <Sidebar />
       <main className="flex-1 overflow-y-auto relative pb-16 md:pb-0 pt-16 md:pt-0">
-        <Suspense fallback={<div className="flex items-center justify-center h-full text-gray-500 text-xl font-medium tracking-wide">Loading view...</div>}>
+        <Suspense fallback={<div className="flex items-center justify-center h-full text-[#59635A] dark:text-[#B9C0B8] text-xl font-medium tracking-wide">Loading view...</div>}>
           <Outlet />
         </Suspense>
       </main>
@@ -45,7 +45,7 @@ const ProtectedRoute = () => {
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<div className="flex items-center justify-center h-screen text-gray-500 text-xl font-medium tracking-wide">Initializing App...</div>}>
+    <Suspense fallback={<div className="flex items-center justify-center h-screen text-[#59635A] dark:text-[#B9C0B8] text-xl font-medium tracking-wide">Initializing App...</div>}>
       <Routes>
         {/* Public Routes (No layout wrapper) */}
         <Route path="/login" element={<Login />} />

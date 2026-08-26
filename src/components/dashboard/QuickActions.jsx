@@ -54,7 +54,7 @@ const QuickActions = () => {
     addLead(leadData);
     
     toast.success('Lead created successfully!', {
-      style: { background: '#22c55e', color: '#fff' }
+      style: { background: '#4C8C5A', color: '#fff' }
     });
     
     setIsModalOpen(false);
@@ -62,26 +62,26 @@ const QuickActions = () => {
 
   return (
     <>
-      <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-6 shadow-sm transition-colors duration-200">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Actions</h3>
+      <div className="bg-white dark:bg-[#212520] rounded-xl border border-[#D6D8D2] dark:border-[#343A35] p-6 shadow-sm transition-colors duration-200">
+        <h3 className="text-lg font-semibold text-[#1C201B] dark:text-[#F4F6F2] mb-4">Quick Actions</h3>
         <div className="flex flex-col space-y-3">
           <button 
             onClick={() => handleAction('addLead')}
-            className="flex items-center justify-center space-x-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 min-h-[44px] px-4 rounded-lg transition-colors text-sm font-medium"
+            className="flex items-center justify-center space-x-2 w-full bg-[#50614F] hover:bg-[#3E4C3D] text-white dark:bg-[#8BAE87] dark:text-[#171A17] dark:hover:bg-[#9FBF9B] py-3 min-h-[44px] px-4 rounded-lg transition-colors text-sm font-medium"
           >
             <UserPlus className="w-4 h-4" />
             <span>Add New Lead</span>
           </button>
           <button 
             onClick={() => handleAction('viewLeads')}
-            className="flex items-center justify-center space-x-2 w-full bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 py-3 min-h-[44px] px-4 rounded-lg transition-colors text-sm font-medium"
+            className="flex items-center justify-center space-x-2 w-full bg-white dark:bg-[#212520] hover:bg-[#ECEDE8] dark:hover:bg-[#282D27] border border-[#D6D8D2] dark:border-[#343A35] text-[#1C201B] dark:text-[#F4F6F2] py-3 min-h-[44px] px-4 rounded-lg transition-colors text-sm font-medium"
           >
             <List className="w-4 h-4" />
             <span>View All Leads</span>
           </button>
           <button 
             onClick={() => handleAction('exportData')}
-            className="flex items-center justify-center space-x-2 w-full bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 py-3 min-h-[44px] px-4 rounded-lg transition-colors text-sm font-medium"
+            className="flex items-center justify-center space-x-2 w-full bg-white dark:bg-[#212520] hover:bg-[#ECEDE8] dark:hover:bg-[#282D27] border border-[#D6D8D2] dark:border-[#343A35] text-[#1C201B] dark:text-[#F4F6F2] py-3 min-h-[44px] px-4 rounded-lg transition-colors text-sm font-medium"
           >
             <Download className="w-4 h-4" />
             <span>Export Data</span>
@@ -90,13 +90,13 @@ const QuickActions = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-gray-900/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-gray-800 w-full h-full max-w-none rounded-none md:max-w-lg md:rounded-xl md:h-auto overflow-y-auto overflow-x-hidden shadow-xl transition-colors duration-200" role="dialog" aria-modal="true">
-            <div className="flex items-center justify-between p-5 border-b border-gray-100 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Add New Lead</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-[#171A17]/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-[#212520] w-full h-full max-w-none rounded-none md:max-w-lg md:rounded-xl md:h-auto overflow-y-auto overflow-x-hidden shadow-xl border border-[#D6D8D2] dark:border-[#343A35] transition-colors duration-200" role="dialog" aria-modal="true">
+            <div className="flex items-center justify-between p-5 border-b border-[#D6D8D2] dark:border-[#343A35]">
+              <h2 className="text-lg font-bold text-[#1C201B] dark:text-[#F4F6F2]">Add New Lead</h2>
               <button 
                 onClick={() => setIsModalOpen(false)}
-                className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors focus:outline-none"
+                className="p-1.5 text-[#59635A] hover:text-[#1C201B] dark:text-[#B9C0B8] dark:hover:text-[#F4F6F2] hover:bg-[#ECEDE8] dark:hover:bg-[#282D27] rounded-full transition-colors focus:outline-none"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />

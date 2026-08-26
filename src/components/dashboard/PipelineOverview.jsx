@@ -16,22 +16,22 @@ const PipelineOverview = ({ leads }) => {
   const total = leads.length || 1; // Prevent division by zero
 
   const statusColors = {
-    'New': 'bg-gray-400',
-    'Contacted': 'bg-blue-500',
-    'Meeting Scheduled': 'bg-purple-500',
-    'Proposal Sent': 'bg-amber-500',
-    'Won': 'bg-green-500',
-    'Lost': 'bg-red-500',
+    'New': 'bg-[#8D9B87]',
+    'Contacted': 'bg-[#50614F]',
+    'Meeting Scheduled': 'bg-[#C8A97E]',
+    'Proposal Sent': 'bg-[#A7B5A3]',
+    'Won': 'bg-[#4C8C5A]',
+    'Lost': 'bg-[#C95A5A]',
   };
 
   const statuses = ['New', 'Contacted', 'Meeting Scheduled', 'Proposal Sent', 'Won', 'Lost'];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 p-6 shadow-sm transition-colors duration-200">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Pipeline Overview</h3>
+    <div className="bg-white dark:bg-[#212520] rounded-xl border border-[#D6D8D2] dark:border-[#343A35] p-6 shadow-sm transition-colors duration-200">
+      <h3 className="text-lg font-semibold text-[#1C201B] dark:text-[#F4F6F2] mb-4">Pipeline Overview</h3>
       
       {/* Visual Bar */}
-      <div className="h-4 w-full flex rounded-full overflow-hidden mb-4 bg-gray-100 dark:bg-gray-700">
+      <div className="h-4 w-full flex rounded-full overflow-hidden mb-4 bg-[#ECEDE8] dark:bg-[#171A17]">
         {statuses.map(status => {
           const count = statusCounts[status] || 0;
           const percentage = (count / total) * 100;
@@ -54,8 +54,8 @@ const PipelineOverview = ({ leads }) => {
           <div key={status} className="flex items-center space-x-2">
             <div className={`w-3 h-3 rounded-full ${statusColors[status]}`} />
             <div className="flex flex-col">
-              <span className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider">{status}</span>
-              <span className="font-semibold text-gray-900 dark:text-white">{statusCounts[status] || 0}</span>
+              <span className="text-xs text-[#59635A] dark:text-[#B9C0B8] uppercase tracking-wider">{status}</span>
+              <span className="font-semibold text-[#1C201B] dark:text-[#F4F6F2]">{statusCounts[status] || 0}</span>
             </div>
           </div>
         ))}

@@ -7,13 +7,13 @@ import LineChartCard from '../components/analytics/LineChartCard';
 import { getStatusDistribution, getMonthlyLeads, getConversionByMonth } from '../utils/analyticsHelpers';
 
 const StatCard = ({ title, value, icon: Icon, colorClass }) => (
-  <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm flex items-center space-x-4 transition-colors duration-200">
+  <div className="bg-white dark:bg-[#212520] p-6 rounded-xl border border-[#D6D8D2] dark:border-[#343A35] shadow-sm flex items-center space-x-4 transition-colors duration-200">
     <div className={`p-3 rounded-lg ${colorClass}`}>
       <Icon className="w-6 h-6" />
     </div>
     <div>
-      <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">{title}</p>
-      <p className="text-2xl font-bold text-gray-900 dark:text-white">{value}</p>
+      <p className="text-[#59635A] dark:text-[#B9C0B8] text-sm font-medium">{title}</p>
+      <p className="text-2xl font-bold text-[#1C201B] dark:text-[#F4F6F2]">{value}</p>
     </div>
   </div>
 );
@@ -36,10 +36,10 @@ const Analytics = () => {
   const conversionData = useMemo(() => getConversionByMonth(leads), [leads]);
 
   return (
-    <div className="p-6 bg-slate-50 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+    <div className="p-6 bg-[#F7F8F5] dark:bg-[#171A17] min-h-screen transition-colors duration-200">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Analytics</h1>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Deep dive into your CRM performance and lead metrics.</p>
+        <h1 className="text-2xl font-bold text-[#1C201B] dark:text-[#F4F6F2]">Analytics</h1>
+        <p className="text-[#59635A] dark:text-[#B9C0B8] text-sm mt-1">Deep dive into your CRM performance and lead metrics.</p>
       </div>
 
       {/* Summary Stats */}
@@ -48,19 +48,19 @@ const Analytics = () => {
           title="Total Leads" 
           value={totalLeads} 
           icon={Users} 
-          colorClass="bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400" 
+          colorClass="bg-[#50614F]/10 dark:bg-[#8BAE87]/20 text-[#50614F] dark:text-[#8BAE87]" 
         />
         <StatCard 
           title="Won Rate" 
           value={`${wonRate}%`} 
           icon={TrendingUp} 
-          colorClass="bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400" 
+          colorClass="bg-[#4C8C5A]/10 dark:bg-[#4C8C5A]/20 text-[#4C8C5A] dark:text-[#5CA36C]" 
         />
         <StatCard 
           title="Avg Time to Close" 
           value={avgTimeToClose} 
           icon={Clock} 
-          colorClass="bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400" 
+          colorClass="bg-[#C8A97E]/10 dark:bg-[#D9BC8E]/20 text-[#8C6D44] dark:text-[#D9BC8E]" 
         />
       </div>
 

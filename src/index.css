@@ -1,14 +1,68 @@
 @import "tailwindcss";
-@theme{
-    --font-roboto: 'Roboto', sans-serif;
-    --color-primary: #2563EB;
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-danger: #EF4444;
 
-  --color-background: #F8FAFC;
+@layer base {
+  :root {
+    --color-bg-app: #F7F8F5;
+    --color-surface: #ECEDE8;
+    --color-surface-card: #FFFFFF;
+    --color-primary: #50614F;
+    --color-primary-hover: #3E4C3D;
+    --color-primary-light: #E2E8E1;
+    --color-secondary: #8D9B87;
+    --color-secondary-hover: #7A8874;
+    --color-accent: #C8A97E;
+    --color-accent-hover: #B89668;
+    --color-text-main: #1C201B;
+    --color-text-muted: #59635A;
+    --color-border-subtle: #D6D8D2;
+    --color-border-hover: #BCC0B6;
+    --color-status-success: #4C8C5A;
+    --color-status-warning: #C78A2C;
+    --color-status-error: #C95A5A;
+  }
+
+  .dark {
+    --color-bg-app: #171A17;
+    --color-surface: #212520;
+    --color-surface-card: #212520;
+    --color-primary: #8BAE87;
+    --color-primary-hover: #9FBF9B;
+    --color-primary-light: #243023;
+    --color-secondary: #A7B5A3;
+    --color-secondary-hover: #B9C6B5;
+    --color-accent: #D9BC8E;
+    --color-accent-hover: #E4CCA1;
+    --color-text-main: #F4F6F2;
+    --color-text-muted: #B9C0B8;
+    --color-border-subtle: #343A35;
+    --color-border-hover: #454D46;
+    --color-status-success: #5CA36C;
+    --color-status-warning: #D99B3B;
+    --color-status-error: #D96D6D;
+  }
+
+  body {
+    background-color: var(--color-bg-app);
+    color: var(--color-text-main);
+  }
+}
+
+@theme {
+  --font-roboto: 'Roboto', sans-serif;
+
+  --color-primary: #50614F;
+  --color-secondary: #8D9B87;
+  --color-accent: #C8A97E;
+  --color-success: #4C8C5A;
+  --color-warning: #C78A2C;
+  --color-danger: #C95A5A;
+  --color-error: #C95A5A;
+
+  --color-background: #F7F8F5;
   --color-card: #FFFFFF;
+  --color-surface: #ECEDE8;
+  --color-border: #D6D8D2;
 
-  --color-text-dark: #0F172A;
-  --color-text-gray: #64748B;
+  --color-text-dark: #1C201B;
+  --color-text-gray: #59635A;
 }

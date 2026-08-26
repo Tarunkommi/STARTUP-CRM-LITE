@@ -11,9 +11,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed bottom-0 md:relative w-full md:w-20 lg:w-64 bg-gray-900 text-white h-16 md:h-screen flex flex-row md:flex-col transition-all duration-300 border-t md:border-t-0 md:border-r border-gray-800 dark:border-gray-800 z-40">
-      <div className="hidden lg:block p-6 border-b border-gray-800 min-h-[64px]">
-        <h2 className="text-2xl font-bold tracking-wider truncate">CRM Lite</h2>
+    <aside className="fixed bottom-0 md:relative w-full md:w-20 lg:w-64 bg-[#171A17] text-[#F4F6F2] h-16 md:h-screen flex flex-row md:flex-col transition-all duration-300 border-t md:border-t-0 md:border-r border-[#343A35] z-40">
+      <div className="hidden lg:block p-6 border-b border-[#343A35] min-h-[64px]">
+        <h2 className="text-2xl font-bold tracking-wider truncate text-[#F4F6F2]">CRM Lite</h2>
       </div>
       
       <nav className="flex-1 p-2 md:p-4 flex flex-row md:flex-col justify-around md:justify-start space-x-2 md:space-x-0 md:space-y-2">
@@ -24,8 +24,8 @@ const Sidebar = () => {
             className={({ isActive }) =>
               `flex flex-col md:flex-row items-center justify-center md:justify-start gap-1 md:gap-3 px-2 md:px-4 py-2 md:py-3 rounded-lg transition-colors duration-200 min-h-[44px] min-w-[44px] ${
                 isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                  ? 'bg-[#50614F] text-white dark:bg-[#8BAE87] dark:text-[#171A17] font-semibold'
+                  : 'text-[#B9C0B8] hover:bg-[#212520] dark:hover:bg-[#282D27] hover:text-[#F4F6F2]'
               }`
             }
           >
@@ -35,7 +35,7 @@ const Sidebar = () => {
         ))}
       </nav>
       
-      <div className="hidden md:block p-4 border-t border-gray-800">
+      <div className="hidden md:block p-4 border-t border-[#343A35]">
         <DarkModeToggle />
       </div>
     </aside>

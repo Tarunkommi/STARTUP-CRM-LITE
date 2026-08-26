@@ -17,11 +17,11 @@ const Dashboard = () => {
   const { leads } = useLeads();
 
   return (
-    <div className="p-6 bg-slate-50 dark:bg-gray-900 min-h-screen transition-colors duration-200">
+    <div className="p-6 bg-[#F7F8F5] dark:bg-[#171A17] min-h-screen transition-colors duration-200">
       <Toaster position="top-right" />
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Welcome back, here's what's happening with your leads today.</p>
+        <h1 className="text-2xl font-bold text-[#1C201B] dark:text-[#F4F6F2]">Dashboard</h1>
+        <p className="text-[#59635A] dark:text-[#B9C0B8] text-sm mt-1">Welcome back, here's what's happening with your leads today.</p>
       </div>
 
       {/* Stats Cards - Responsive Grid: 1 col on mobile, 2 on tablet, 4 on desktop */}
