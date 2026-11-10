@@ -74,17 +74,17 @@ if (process.env.NODE_ENV === 'production') {
 
 // --- Rate Limiting ---
 
-// General rate limit: 100 requests per 15 minutes per IP
+// General rate limit: 1000 requests per 15 minutes per IP
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
+  max: 1000,
   message: { success: false, message: 'Too many requests, please try again later.' }
 });
 
-// Auth rate limit (stricter): 10 requests per 15 minutes for /api/auth routes
+// Auth rate limit (stricter): 50 requests per 15 minutes for /api/auth routes
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10,
+  max: 50,
   message: { success: false, message: 'Too many auth attempts.' }
 });
 
