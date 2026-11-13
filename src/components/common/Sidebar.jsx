@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Users, BarChart2 } from 'lucide-react';
+import { LayoutDashboard, Users, BarChart2, LogOut } from 'lucide-react';
 import DarkModeToggle from './DarkModeToggle';
+import { useAuth } from '../../context/AuthContext';
 
 const Sidebar = () => {
+  const { user, logout } = useAuth();
+
   const navItems = [
     { path: '/', name: 'Dashboard', icon: <LayoutDashboard size={20} /> },
     { path: '/leads', name: 'Leads', icon: <Users size={20} /> },
@@ -37,6 +40,26 @@ const Sidebar = () => {
       
       <div className="hidden md:block p-4 border-t border-[#343A35]">
         <DarkModeToggle />
+      </div>
+
+      {/* Account Section */}
+      <div className="hidden md:block p-4 border-t border-[#343A35]">
+        <div className="min-w-0 mb-3 lg:block md:hidden">
+          <p className="text-sm font-semibold text-[#F4F6F2] truncate">
+            {user?.name || 'User'}
+          </p>
+          <p className="text-xs text-[#B9C0B8] truncate mt-0.5">
+            {user?.email || ''}
+          </p>
+        </div>
+        <button
+          onClick={logout}
+          title="Logout"
+          className="flex items-center justify-center lg:justify-start gap-2 w-full px-3 py-2 rounded-lg text-sm font-medium text-[#B9C0B8] hover:text-[#C95A5A] hover:bg-[#212520] dark:hover:bg-[#282D27] transition-colors duration-200 focus:outline-none"
+        >
+          <LogOut size={18} />
+          <span className="lg:inline md:hidden">Logout</span>
+        </button>
       </div>
     </aside>
   );
